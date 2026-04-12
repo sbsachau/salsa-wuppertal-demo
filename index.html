@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salsa Wuppertal – Salsa, Bachata & mehr</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #C8102E;
+      --red-light: #e8213f;
+      --black: #111111;
+      --gray: #555;
+      --light: #f7f5f2;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--gray);
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red); color: var(--white);
+      padding: 0.6rem 1.4rem; border-radius: 2px;
+      text-decoration: none; font-size: 0.82rem;
+      font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red-light); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 5% 4rem 8%;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 1.8rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--red);
+    }
+    .hero-sub {
+      font-size: 1rem; color: var(--gray);
+      line-height: 1.7; max-width: 400px;
+      font-weight: 300; margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 2px;
+      text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1.5px solid var(--black); color: var(--black);
+      padding: 0.9rem 2rem; border-radius: 2px;
+      text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: var(--black); color: var(--white); }
+
+    .hero-right {
+      position: relative;
+      background: var(--light);
+      overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 40px,
+          rgba(200,16,46,0.04) 40px,
+          rgba(200,16,46,0.04) 41px
+        );
+    }
+    .hero-card {
+      position: absolute;
+      bottom: 12%; left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      border-radius: 4px;
+      padding: 1.5rem 2rem;
+      width: 280px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+    .hero-card-label {
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--red);
+      font-weight: 500; margin-bottom: 0.5rem;
+    }
+    .hero-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; margin-bottom: 0.3rem;
+    }
+    .hero-card-date {
+      font-size: 0.82rem; color: var(--gray); font-weight: 300;
+    }
+    .hero-deco {
+      position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 300px; height: 300px;
+      border: 1px solid rgba(200,16,46,0.12);
+      border-radius: 50%;
+    }
+    .hero-deco::before {
+      content: ''; position: absolute; inset: 30px;
+      border: 1px solid rgba(200,16,46,0.08);
+      border-radius: 50%;
+    }
+    .hero-number {
+      position: absolute; top: 15%; right: 10%;
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem; font-weight: 700;
+      color: rgba(200,16,46,0.06); line-height: 1;
+      user-select: none;
+    }
+
+    /* ── DANCE STYLES ── */
+    .styles-section {
+      padding: 6rem 8%;
+      background: var(--white);
+    }
+    .section-tag {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1rem;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: #e8e8e8;
+      border: 1px solid #e8e8e8;
+    }
+    .style-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .style-card:hover { background: var(--light); }
+    .style-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; color: rgba(200,16,46,0.15);
+      margin-bottom: 0.5rem; line-height: 1;
+    }
+    .style-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; margin-bottom: 0.5rem;
+    }
+    .style-desc {
+      font-size: 0.85rem; color: var(--gray);
+      line-height: 1.6; font-weight: 300;
+    }
+
+    /* ── EVENTS ── */
+    .events-section {
+      padding: 6rem 8%;
+      background: var(--black);
+      color: var(--white);
+    }
+    .events-section .section-tag { color: rgba(200,16,46,0.8); }
+    .events-section .section-title { color: var(--white); }
+    .events-list { display: flex; flex-direction: column; gap: 0; }
+    .event-item {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: opacity 0.2s;
+    }
+    .event-item:hover { opacity: 0.8; }
+    .event-date {
+      text-align: center;
+    }
+    .event-day {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; line-height: 1; color: var(--red);
+    }
+    .event-month {
+      font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.4);
+    }
+    .event-info {}
+    .event-type {
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--red);
+      margin-bottom: 0.3rem;
+    }
+    .event-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; margin-bottom: 0.2rem;
+    }
+    .event-location {
+      font-size: 0.82rem; color: rgba(255,255,255,0.4); font-weight: 300;
+    }
+    .event-link {
+      color: var(--white); text-decoration: none;
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 2px; white-space: nowrap;
+      transition: border-color 0.2s;
+    }
+    .event-link:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── ABOUT ── */
+    .about-section {
+      padding: 6rem 8%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-box {
+      background: var(--light);
+      height: 420px;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-box-pattern {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent, transparent 20px,
+        rgba(200,16,46,0.04) 20px, rgba(200,16,46,0.04) 21px
+      );
+    }
+    .about-quote {
+      position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+      background: var(--white);
+      padding: 1.5rem;
+      border-left: 3px solid var(--red);
+    }
+    .about-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem; line-height: 1.6; color: var(--black);
+    }
+    .about-quote cite {
+      display: block; margin-top: 0.8rem;
+      font-size: 0.75rem; font-style: normal;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--red); font-family: 'DM Sans', sans-serif;
+    }
+    .about-content .section-title { margin-bottom: 1.5rem; }
+    .about-text {
+      font-size: 0.95rem; color: var(--gray);
+      line-height: 1.8; font-weight: 300; margin-bottom: 2rem;
+    }
+    .about-stats {
+      display: flex; gap: 3rem; margin-bottom: 2.5rem;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; color: var(--red); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--gray);
+      margin-top: 0.3rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 6rem 8%;
+      background: var(--light);
+      text-align: center;
+    }
+    .contact-section .section-title { margin-bottom: 1rem; }
+    .contact-sub {
+      font-size: 1rem; color: var(--gray); font-weight: 300;
+      margin-bottom: 2.5rem; max-width: 450px; margin-left: auto; margin-right: auto;
+      line-height: 1.7;
+    }
+    .contact-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); color: rgba(255,255,255,0.4);
+      padding: 2rem 8%;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem;
+    }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-links { display: flex; gap: 2rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-left > * {
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-tag { animation-delay: 0.1s; }
+    .hero-title { animation-delay: 0.2s; }
+    .hero-sub { animation-delay: 0.35s; }
+    .hero-btns { animation-delay: 0.5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 300px; }
+      .hero-left { padding: 5rem 6% 3rem; }
+      .about-section { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+      .event-item { grid-template-columns: 80px 1fr; }
+      .event-link { display: none; }
+      .about-stats { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Salsa<span>Wuppertal</span>.com</a>
+    <ul class="nav-links">
+      <li><a href="#tanzstiле">Tanzstile</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#about">Über Daniel</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#events" class="nav-cta">Nächste Party</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <span class="hero-tag">Wuppertal · Karibische Tänze</span>
+      <h1 class="hero-title">
+        Erlebe die<br>
+        <em>Leidenschaft</em><br>
+        des Tanzes.
+      </h1>
+      <p class="hero-sub">
+        Salsa, Bachata, Merengue, Chachachá und Kizomba –
+        mitten in Wuppertal. Workshops, Parties und mehr
+        für alle Levels.
+      </p>
+      <div class="hero-btns">
+        <a href="#events" class="btn-primary">Zu den Events</a>
+        <a href="#about" class="btn-outline">Über Daniel</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-number">S</div>
+      <div class="hero-deco"></div>
+      <div class="hero-card">
+        <div class="hero-card-label">Nächstes Event</div>
+        <div class="hero-card-title">Bachataparty Wuppertal</div>
+        <div class="hero-card-date">Bald wieder – stay tuned!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TANZSTILE -->
+  <section class="styles-section" id="tanzstile">
+    <span class="section-tag">Was wir tanzen</span>
+    <h2 class="section-title">Fünf Stile.<br>Eine Leidenschaft.</h2>
+    <div class="styles-grid">
+      <div class="style-card">
+        <div class="style-num">01</div>
+        <div class="style-name">Salsa</div>
+        <div class="style-desc">Rhythmisch, feurig, lebendig – der klassische karibische Tanz.</div>
+      </div>
+      <div class="style-card">
+        <div class="style-num">02</div>
+        <div class="style-name">Bachata</div>
+        <div class="style-desc">Sinnlich und ausdrucksstark. Aus der Dominikanischen Republik.</div>
+      </div>
+      <div class="style-card">
+        <div class="style-num">03</div>
+        <div class="style-name">Merengue</div>
+        <div class="style-desc">Einfach zu lernen, schwer zu vergessen. Perfekt für Einsteiger.</div>
+      </div>
+      <div class="style-card">
+        <div class="style-num">04</div>
+        <div class="style-name">Chachachá</div>
+        <div class="style-desc">Spielerisch, verspielt – mit dem unverkennbaren Cha-Cha-Schritt.</div>
+      </div>
+      <div class="style-card">
+        <div class="style-num">05</div>
+        <div class="style-name">Kizomba</div>
+        <div class="style-desc">Sanft und verbunden. Angolanisch, modern, hypnotisierend.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events-section" id="events">
+    <span class="section-tag">Was kommt</span>
+    <h2 class="section-title">Nächste Events<br>& Parties.</h2>
+    <div class="events-list">
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-day">TBA</div>
+          <div class="event-month">2025</div>
+        </div>
+        <div class="event-info">
+          <div class="event-type">Party</div>
+          <div class="event-name">Salsaparty Wuppertal</div>
+          <div class="event-location">Wuppertal, NRW</div>
+        </div>
+        <a href="#kontakt" class="event-link">Details anfragen →</a>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-day">TBA</div>
+          <div class="event-month">2025</div>
+        </div>
+        <div class="event-info">
+          <div class="event-type">Party</div>
+          <div class="event-name">Bachataparty Wuppertal</div>
+          <div class="event-location">Wuppertal, NRW</div>
+        </div>
+        <a href="#kontakt" class="event-link">Details anfragen →</a>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-day">TBA</div>
+          <div class="event-month">2025</div>
+        </div>
+        <div class="event-info">
+          <div class="event-type">Party</div>
+          <div class="event-name">Bachataparty Bochum</div>
+          <div class="event-location">Bochum, NRW</div>
+        </div>
+        <a href="#kontakt" class="event-link">Details anfragen →</a>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-day">TBA</div>
+          <div class="event-month">2025</div>
+        </div>
+        <div class="event-info">
+          <div class="event-type">Workshop</div>
+          <div class="event-name">Bachataworkshop Wuppertal</div>
+          <div class="event-location">Wuppertal, NRW</div>
+        </div>
+        <a href="#kontakt" class="event-link">Details anfragen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-visual">
+      <div class="about-box">
+        <div class="about-box-pattern"></div>
+        <div class="about-quote">
+          <p>„Wir lieben Salsa, Bachata, Merengue, Chachachá und Kizomba – und möchten diese Leidenschaft mit euch teilen."</p>
+          <cite>— Daniel, SalsaWuppertal.com</cite>
+        </div>
+      </div>
+    </div>
+    <div class="about-content">
+      <span class="section-tag">Über mich</span>
+      <h2 class="section-title">Hallo,<br>ich bin Daniel.</h2>
+      <p class="about-text">
+        Seit Jahren bringe ich die Energie und Leidenschaft karibischer Tänze nach Wuppertal und
+        Umgebung. Bei mir lernst du nicht nur Schritte – du entdeckst eine ganze Welt voller
+        Rhythmus, Verbindung und Freude.
+      </p>
+      <p class="about-text">
+        Ob Anfänger oder Fortgeschrittener – meine Workshops und Parties sind für alle offen.
+        Ich freue mich darauf, dich bald auf der Tanzfläche zu begrüßen.
+      </p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">Tanzstile</div>
+        </div>
+        <div>
+          <div class="stat-num">NRW</div>
+          <div class="stat-label">Standort</div>
+        </div>
+        <div>
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Leidenschaft</div>
+        </div>
+      </div>
+      <a href="#kontakt" class="btn-primary">Kontakt aufnehmen</a>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="contact-section" id="kontakt">
+    <span class="section-tag">Melde dich</span>
+    <h2 class="section-title">Bereit zu tanzen?</h2>
+    <p class="contact-sub">
+      Fragen zu Workshops, Parties oder einfach mehr Infos?
+      Schreib Daniel direkt an – er freut sich auf dich.
+    </p>
+    <div class="contact-btns">
+      <a href="mailto:info@salsawuppertal.com" class="btn-primary">E-Mail schreiben</a>
+      <a href="https://salsawuppertal.com" class="btn-outline">Zur Website</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 SalsaWuppertal.com · Daniel</div>
+    <div class="footer-links">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+      <a href="#">Disclaimer</a>
+    </div>
+  </footer>
+
+</body>
+</html>
