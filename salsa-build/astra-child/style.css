@@ -4,7 +4,7 @@
  Description:  Child Theme fuer SalsaWuppertal.com
  Author:       Custom
  Template:     astra
- Version:      1.0.0
+ Version:      1.0.1
  Text Domain:  astra-child
 */
 
@@ -31,6 +31,19 @@ h1, h2, h3, h4, h5, h6,
 .elementor-heading-title {
   font-family: 'Playfair Display', serif !important;
   letter-spacing: -0.02em;
+}
+
+/* ── SEITENTITEL VERSTECKEN (Frontpage & alle Elementor-Seiten) ── */
+.ast-page-title-bar,
+.entry-title,
+.page-title,
+.ast-breadcrumbs-wrapper {
+  display: none !important;
+}
+
+/* Kein Padding-Top wenn kein Breadcrumb/Title-Bar */
+.ast-single-post-order .site-content {
+  padding-top: 0 !important;
 }
 
 .site-header, #masthead {
