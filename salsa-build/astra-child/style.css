@@ -1,0 +1,162 @@
+/*
+ Theme Name:   Astra Child — SalsaWuppertal
+ Theme URI:    https://salsawuppertal.com
+ Description:  Child Theme fuer SalsaWuppertal.com
+ Author:       Custom
+ Template:     astra
+ Version:      1.0.0
+ Text Domain:  astra-child
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+:root {
+  --sw-red:       #C8102E;
+  --sw-red-light: #e8213f;
+  --sw-black:     #0e0e0e;
+  --sw-gray:      #666666;
+  --sw-light:     #f6f4f1;
+  --sw-white:     #ffffff;
+  --sw-rose:      #ff8fa3;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif !important;
+  color: var(--sw-black);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.entry-title,
+.elementor-heading-title {
+  font-family: 'Playfair Display', serif !important;
+  letter-spacing: -0.02em;
+}
+
+.site-header, #masthead {
+  background: rgba(255,255,255,0.95) !important;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 999 !important;
+}
+
+.ast-site-identity .site-title a,
+.ast-site-identity .site-title {
+  font-family: 'Playfair Display', serif !important;
+  color: var(--sw-black) !important;
+  font-size: 1.2rem !important;
+  text-decoration: none !important;
+}
+
+.main-navigation .menu-item > a,
+.ast-flex-last-item a,
+.main-header-menu .menu-item > a {
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--sw-gray) !important;
+  transition: color 0.2s !important;
+}
+
+.main-navigation .menu-item > a:hover,
+.main-header-menu .menu-item > a:hover {
+  color: var(--sw-red) !important;
+}
+
+.ast-header-button-1 .ast-custom-button,
+.ast-header-custom-item .ast-custom-button {
+  background: var(--sw-red) !important;
+  color: white !important;
+  border-radius: 2px !important;
+  padding: 0.55rem 1.2rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  transition: background 0.2s !important;
+  border: none !important;
+}
+
+.ast-header-button-1 .ast-custom-button:hover { background: var(--sw-red-light) !important; }
+
+.ast-btn, .elementor-button, .wp-block-button__link,
+input[type="submit"], button[type="submit"] {
+  background: var(--sw-red) !important;
+  color: white !important;
+  border-radius: 2px !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  font-family: 'DM Sans', sans-serif !important;
+  transition: background 0.2s, transform 0.2s !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.ast-btn:hover, .elementor-button:hover {
+  background: var(--sw-red-light) !important;
+  transform: translateY(-2px);
+}
+
+.elementor-widget-text-editor p {
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.8;
+  color: var(--sw-gray);
+}
+
+.sw-section-tag {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sw-red);
+  margin-bottom: 0.8rem;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.tribe-events-calendar th { background: var(--sw-black); color: white; border-color: rgba(255,255,255,0.1); }
+.tribe-events-calendar td.tribe-has-events { background: rgba(200,16,46,0.05); }
+.tribe-events-calendar td.tribe-has-events a { color: var(--sw-red); }
+.tribe-events-list .tribe-event-schedule-details { color: var(--sw-gray); font-size: 0.85rem; }
+.tribe-events-list article { border-bottom: 1px solid rgba(0,0,0,0.08) !important; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+.tribe-events-list .tribe-event-url, .tribe-events-list .tribe-event-schedule-details a { color: var(--sw-red) !important; }
+
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form textarea {
+  width: 100%; padding: 0.8rem 1rem;
+  border: 1.5px solid #e0e0e0; border-radius: 2px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+  transition: border-color 0.2s; background: white;
+}
+.wpcf7-form input:focus, .wpcf7-form textarea:focus { outline: none; border-color: var(--sw-red); }
+.wpcf7-form textarea { min-height: 140px; resize: vertical; }
+.wpcf7-form input[type="submit"] {
+  background: var(--sw-red) !important; color: white !important;
+  padding: 0.9rem 2.5rem; border: none; border-radius: 2px;
+  cursor: pointer; font-size: 0.85rem; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: background 0.2s, transform 0.2s; width: 100%; margin-top: 0.5rem;
+}
+.wpcf7-form input[type="submit"]:hover { background: var(--sw-red-light) !important; transform: translateY(-2px); }
+
+.site-footer, #colophon { background: var(--sw-black) !important; color: rgba(255,255,255,0.35) !important; }
+.site-footer a, #colophon a { color: rgba(255,255,255,0.35) !important; transition: color 0.2s; }
+.site-footer a:hover, #colophon a:hover { color: white !important; }
+.ast-footer-copyright { color: rgba(255,255,255,0.35) !important; }
+
+.elementor-widget-wrap > .elementor-widget { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.elementor-widget-wrap > .elementor-widget.sw-revealed { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  .ast-mobile-menu-trigger svg { fill: var(--sw-red); }
+  .ast-site-identity .site-title a { font-size: 1rem !important; }
+  .elementor-column { width: 100% !important; }
+  .wpcf7-form input[type="submit"] { max-width: 100%; }
+}
+@media (max-width: 480px) { body { font-size: 0.95rem; } }
